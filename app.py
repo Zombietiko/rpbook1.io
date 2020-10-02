@@ -1,15 +1,15 @@
-from flask import Flask, render_template, flash, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request
 from config import Config
-from forms import LoginForm, RegisterForm, CreateRecipeForm, EditRecipeForm, ConfirmDelete
+from forms import CreateRecipeForm, EditRecipeForm
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
-import re
 import math
 import os
 
 app = Flask(__name__)
-# app.config['MONGO_URI'] = 'mongodb://localhost:27017/recipeGlut'
 
+
+# app.config['MONGO_URI'] = 'mongodb://localhost:27017/recipeGlut'
+app.config['MONGO_URI'] = "mongodb+srv://zombie20:Deco2023!@cluster0.ct2zf.mongodb.net/rp_book?retryWrites=true&w=majority"
 app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
 app.config.from_object(Config)
 
@@ -20,7 +20,7 @@ mongo = PyMongo(app)
 @app.route('/index')
 def index():
     """Home page the gets 4 recipes from DB that have been viewed the most"""
-    four_recipes = mongo.db.rp_book.find().sort([('views')]).limit(4)
+    four_recipes = mongo.db.rp_book.find().limit(4)
     return render_template('index.html',recipes=four_recipes)
 
 
@@ -30,7 +30,7 @@ def create_recipe():
     form = CreateRecipeForm(request.form)
     if form.validate_on_submit():
         # set the collection
-        recipes_db = mongo.db.recipes
+        recipes_db = mongo.db.rp_book
         # insert the new recipe
         recipes_db.insert_one({
             'title': request.form['title'],
@@ -38,8 +38,8 @@ def create_recipe():
             'ingredients': request.form['ingredients'],
             'method': request.form['method'],
             'tags': request.form['tags'],
-            'image': request.form['image']
-            })
+            'image': request.form['image']         
+        })
         return redirect(url_for('index', title='New Recipe Added'))
     return render_template('create_recipe.html', title='create a recipe', form=form)
 
@@ -47,19 +47,18 @@ def create_recipe():
 @app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
 def edit_recipe(recipe_id):
     """Allows logged in user to edit their own recipes"""
-    recipe_db = mongo.db.recipes.find_one_or_404({'_id': ObjectId(recipe_id)})
+    recipe_db = mongo.db.rp_book.find_one_or_404({'_id': ObjectId(recipe_id)})
     if request.method == 'GET':
         form = EditRecipeForm(data=recipe_db)
         return render_template('edit_recipe.html', recipe=recipe_db, form=form)
     form = EditRecipeForm(request.form)
     if form.validate_on_submit():
-        recipes_db = mongo.db.recipes
+        recipes_db = mongo.db.rp_book
         recipes_db.update_one({
             '_id': ObjectId(recipe_id),
         }, {
             '$set': {
                 'title': request.form['title'],
-                'user': session['username'],
                 'short_description': request.form['short_description'],
                 'ingredients': request.form['ingredients'],
                 'method': request.form['method'],
@@ -74,36 +73,13 @@ def edit_recipe(recipe_id):
 @app.route('/delete_recipe/<recipe_id>', methods=['GET', 'POST'])
 def delete_recipe(recipe_id):
     """Allows logged in user to delete one of their recipes with added confirmation"""
-    recipe_db = mongo.db.recipes.find_one_or_404({'_id': ObjectId(recipe_id)})
-    if request.method == 'GET':
-        form = ConfirmDelete(data=recipe_db)
-        return render_template('delete_recipe.html', title="Delete Recipe", form=form)
-    form = ConfirmDelete(request.form)
-    if form.validate_on_submit():
-        recipes_db = mongo.db.recipes
-        recipes_db.delete_one({
-            '_id': ObjectId(recipe_id),
-        })
-        return redirect(url_for('index', title='Recipe Glut Updated'))
-    return render_template('delete_recipe.html', title="delete recipe", recipe=recipe_db, form=form)
-
-
-@app.route('/search')
-def search():
-    """Provides logic for search bar"""
-    orig_query = request.args['query']
-    # using regular expression setting option for any case
-    query = {'$regex': re.compile('.*{}.*'.format(orig_query)), '$options': 'i'}
-    # find instances of the entered word in title, tags or ingredients
-    results = mongo.db.recipes.find({
-        '$or': [
-            {'title': query},
-            {'tags': query},
-            {'ingredients': query},
-        ]
+    recipe_db = mongo.db.rp_book.find_one_or_404({'_id': ObjectId(recipe_id)})
+    recipes_db = mongo.db.rp_book
+    recipes_db.delete_one({
+        '_id': ObjectId(recipe_id)
     })
-    return render_template('search.html', query=orig_query, results=results)
-
+    return redirect(url_for('index', title='Recipe Glut Updated'))
+    
 
 @app.route('/recipes')
 def recipes():
@@ -112,9 +88,9 @@ def recipes():
     per_page = 8
     page = int(request.args.get('page', 1))
     # count total number of recipes
-    total = mongo.db.recipes.count_documents({})
+    total = mongo.db.rp_book.count_documents({})
     # logic for what recipes to return
-    all_recipes = mongo.db.recipes.find().skip((page - 1)*per_page).limit(per_page)
+    all_recipes = mongo.db.rp_book.find().skip((page - 1)*per_page).limit(per_page)
     pages = range(1, int(math.ceil(total / per_page)) + 1)
     return render_template('recipes.html', recipes=all_recipes, page=page, pages=pages, total=total)
 
@@ -122,11 +98,7 @@ def recipes():
 @app.route('/recipe/<recipe_id>')
 def recipe(recipe_id):
     """Shows full recipe and increments view"""
-    mongo.db.recipes.find_one_and_update(
-        {'_id': ObjectId(recipe_id)},
-        {'$inc': {'views': 1}}
-    )
-    recipe_db = mongo.db.recipes.find_one_or_404({'_id': ObjectId(recipe_id)})
+    recipe_db = mongo.db.rp_book.find_one_or_404({'_id': ObjectId(recipe_id)})
     return render_template('recipe.html', recipe=recipe_db)
 
 
