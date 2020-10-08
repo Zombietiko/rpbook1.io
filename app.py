@@ -17,11 +17,14 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/test.html')
 def index():
     """Home page the gets 4 recipes from DB that have been viewed the most"""
-    four_recipes = mongo.db.rp_book.find().limit(4)
-    return render_template('index.html',recipes=four_recipes)
+   # four_recipes = mongo.db.rp_book.find().limit(4)
+   # return render_template('index.html',recipes=four_recipes)
+
+    four_recipes = 'hello!!'
+    return render_template('test.html',four_recipes=four_recipes)
 
 
 @app.route('/create_recipe', methods=['GET', 'POST'])
