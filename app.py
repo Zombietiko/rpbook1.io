@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 # app.config['MONGO_URI'] = 'mongodb://localhost:27017/recipeGlut'
-app.config['MONGO_URI'] = "mongodb+srv://zombie20:Deco2023!@cluster0.ct2zf.mongodb.net/rp_book?retryWrites=true&w=majority"
+#app.config['MONGO_URI'] = "mongodb+srv://zombie20:Deco2023!@cluster0.ct2zf.mongodb.net/rp_book?retryWrites=true&w=majority"
 app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
 app.config.from_object(Config)
 
