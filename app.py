@@ -81,14 +81,14 @@ def delete_recipe(recipe_id):
 def recipes():
     """Logic for recipe list and pagination"""
     # number of recipes per page
-    per_page = 8
+    per_page = 5
     page = int(request.args.get('page', 1))
     # count total number of recipes
     total = mongo.db.recipe.count_documents({})
     # logic for what recipes to return
-    all_recipes = mongo.db.recipes.find().skip((page - 1)*per_page).limit(per_page)
+    all_the_recipes = mongo.db.recipes.find().skip((page - 1)*per_page).limit(per_page)
     pages = range(1, int(math.ceil(total / per_page)) + 1)
-    return render_template('recipes.html', recipes=all_recipes, page=page, pages=pages, total=total)
+    return render_template('recipes.html', recipes=all_The_recipes, page=page, pages=pages, total=total)
 
 
 @app.route('/recipe/<recipe_id>')
