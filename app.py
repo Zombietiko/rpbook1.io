@@ -8,7 +8,6 @@ import os
 
 
 app = Flask(__name__)
-#app.config['MONGO_URI'] = 'mongodb+srv://dead:pa55word@cluster0.ct2zf.mongodb.net/rp_book?retryWrites=true&w=majority'
 app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
 app.config.from_object(Config)
 mongo = PyMongo(app)
@@ -86,9 +85,9 @@ def recipes():
     # count total number of recipes
     total = mongo.db.recipe.count_documents({})
     # logic for what recipes to return
-    all_the_recipes = mongo.db.recipes.find().skip((page - 1)*per_page).limit(per_page)
+    all_the_recipes = mongo.db.recipe.find().skip((page - 1)*per_page).limit(per_page)
     pages = range(1, int(math.ceil(total / per_page)) + 1)
-    return render_template('recipes.html', recipes=all_The_recipes, page=page, pages=pages, total=total)
+    return render_template('recipes.html', recipes=all_the_recipes, page=page, pages=pages, total=total)
 
 
 @app.route('/recipe/<recipe_id>')
