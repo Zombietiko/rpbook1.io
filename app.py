@@ -77,7 +77,7 @@ def delete_recipe(recipe_id):
     })
     return redirect(url_for('index', title='Recipes Updated'))
 
-@app.route('/recipes')
+@app.route('/recipes/<recipe_id>')
 def recipes():
     """Logic for recipe list and pagination"""
     # number of recipes per page
