@@ -18,14 +18,14 @@ functionality to a database hosted in the cloud on Heroku platform as a service.
 Users can :
 
 
-Recipes:
+## Recipes:
 
 •	View details of the Recipes that have already added.
 •	You can edit the details of the recipe or delete the recipe.
 •	Manage a list of recipes saved by the current logged in user.
 
 
-Add Recipe: 
+## Add Recipe: 
 
 •	Add a new recipe  
 •	Add ingredients
