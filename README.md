@@ -1,4 +1,4 @@
-# Recipe Book | Flask & PostgreSQL Data Centric Development Project
+# Recipe Book | Flask & Mongo DB - Data Centric Development Project
 
 ## UX Design
 
