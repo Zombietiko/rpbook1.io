@@ -36,7 +36,7 @@ Users can :
 A demo of this web application is available [here](https://rpbook.herokuapp.com/).
 
 
-## Getting started /
+## Getting started :
 
 1. Clone the repo and cd into the project directory.
 2. Ensure you have Python 3 and Postgres installed and create a virtual environment and activate it.
