@@ -72,9 +72,6 @@ The app is designed to lead the user to view other peoples and make amenend to t
 
 <h2>How to run this project locally </h2>
 
-To run locally, you can clone this repository directly into the editor of your choice by pasting git clone 
-https://github.com/Zombietiko/TouchDown-My1stMileStoneProject.git into your terminal. 
-To cut ties with this GitHub repository, type git remote rm origin into the terminal.
 
 <h1> Credits </h1>
 
