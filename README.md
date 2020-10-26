@@ -1,71 +1,86 @@
-# Recipe Book | Flask & Mongo DB - Data Centric Development Project
+<h1>Recipe Book | Flask & Mongo DB - Data Centric Development Project</H1>
 
-## UX Design
+Please click [here](https://rpbook.herokuapp.com/) to visit a live demo of my project.
 
-The design was to have an app where there was the freedom to add a recipe you really liked to the Recipe Book App.
-
-## Database Design
-
-The database design was to make it easier for us to maintain by letting the user add their reicpies and this would populate to the Mongo Atlas Database.
-
-## Features
+My Third Milestone Project for Code Institute is a data centric app.
+app my idea is to create a The design was to have an app where there was the freedom to add a recipe you really liked to the Recipe Book App.
 
 
+<H1>UX</H1>
 
-## Recipes:
+<h2>Who is the target audience?</h2>
 
-•	View details of the Recipes that have already added.
-•	You can edit the details of the recipe or delete the recipe.
-•	Manage a list of recipes saved by the current logged in user.
-
-
-## Add Recipe: 
-
-•	Add a new recipe  
-•	Add ingredients
-•	Add methods
-
-## Demo
-
-A demo of this web application is available [here](https://rpbook.herokuapp.com/).
+A person who is interested in Cooking.
+A person who wants to find new recipes.
+A person who wantes to add their recipes.
 
 
-## Getting started :
+<h2>Why is this the best way to target the audience?</h2>
 
-1. Clone the repo and cd into the project directory.
-2. Ensure you have Python 3 and Postgres installed and create a virtual environment and activate it.
-3. Install dependencies: `pip install -r requirements.txt`.
+The app is designed to lead the user to find more recipes.
+The app is designed to lead the user to add their own recipes.
+The app is designed to lead the user to edit their recipes.
+The app is designed to lead the user to view other peoples and make amenend to their recipes if they feel a change is needed.
 
 
-## Technologies Used
 
-**HTML, CSS, JavaScript (Front End Framework Materialize)  Python, Full Stack Micro Framework Flask, Mongo DB an database management system :**
+<h2>User Stories</h2>
 
-## Testing
-Manual testing was undertaken for this application and satisfactorily passed. 
-A sample of the tests conducted are as follows:
+<p>•As a user, I want to find more recipes.</P>
+<p>•As a user, I want to add more recipes.</p>
+<p>•As a user, I want to be able to help people find my recipes</p>
+<p>•As a user, I want to be able to help people with amending their recipes after I have tried them</p>
 
-1.	Testing navigation buttons and hyperlinks throughout the page
-2.	Testing the CRUD functionality
-3.	Testing the responsiveness of the application on different browsers and then using different devices.
+<h2>UX Design</h2>
 
-## Deployment
-1. Make sure requirements.txt and Procfile exist:
-`pip3 freeze --local requirements.txt`
-`echo web: python app.py > Procfile`
-2. Create Heroku App, Select Postgres add-on, download Heroku CLI toolbelt, login to heroku (Heroku login), 
-git init, connect git to heroku (heroku git remote -a <project>), 
-git add ., git commit, git push heroku master.
-3. heroku ps:scale web=1
-4. In heroku app settings set the config vars to add DATABASE_URL, IP and PORT
 
-## Credits
 
-**Matthew Richardson** - This project was completed as part of Code Institute’s Mentored Online Full Stack Web Development course in 2018.
+<h1>Technologies</h1>
 
-### Content
-The content for recipes was taken from the [BBC recipes website](https://www.bbc.com/food/recipes).
+<p>•Html</p>
+<p>•CSS</P>
+<p>•Gitpod - Used for a development and testing area.</P>
+<p>•git- Used as a repository.</P></P>
+<p>•Heroku - Connected to my Git repositoty to deploy app.</P>
+<p>•git- Used as a repository.</P>
+<p>•Mongo DB - Database.</P>
+<p>•Bootstrap - Bootstrap framework.</P>
+<p>•jQuery.</P>
 
-### Media
-The images for recipes were also taken from the BBC recipes website.
- 
+
+<h1> Features </h1>
+
+
+<h1> Testing </h1>
+
+
+<p>•I tested the navbar in the chrome browser to ensure that the Home/Recipes/Add Recipe all went to the relevant pages.</P> 
+<p>•I tested that the four recipes would display correctly on the front page and that the find out more buttons worked correctly.</P>
+<p>•I tested the Recipes page displayed, the recipes that I had added using the form on the add recipe page added the details to the database for the reicpe page to display</P>
+<p>•I tested the Recipes page displaye, the recipes that I had added using the form on the add recipe page added the details to the database for the reicpe page to display</P>
+
+
+<p>•I Used W3c validator to validate the html pages created. I copied my code and pasted it into the validator to check for errors and warnings.</P>
+<p>•I tested that Heroku had connected properly with my git repository </P>
+
+
+<h2>Issues when testing</h2>
+
+
+<h1> Deployment </h1>
+
+
+<h2>How to run this project locally </h2>
+
+To run locally, you can clone this repository directly into the editor of your choice by pasting git clone 
+https://github.com/Zombietiko/TouchDown-My1stMileStoneProject.git into your terminal. 
+To cut ties with this GitHub repository, type git remote rm origin into the terminal.
+
+<h1> Credits </h1>
+
+<h2>Media</h2>
+
+
+<h2> Acknowledgements </h2>
+
+
