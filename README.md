@@ -10,12 +10,6 @@ The database design was to make it easier for us to maintain by letting the user
 
 ## Features
 
-### Existing Features
-
-This is a web application which that allows users to store and easily access recipes. 
-It is a full stack web application (frontend and backend) that provides CRUD (Create, Read, Update, Delete) 
-functionality to a database hosted in the cloud on Heroku platform as a service. 
-Users can :
 
 
 ## Recipes:
